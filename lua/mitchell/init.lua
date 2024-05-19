@@ -1,5 +1,0 @@
-require("mitchell.remap")
-require("mitchell.set")
-require("mitchell.packer")
-require("luasnip.loaders.from_snipmate").lazy_load()
-require("mitchell.filetypes")

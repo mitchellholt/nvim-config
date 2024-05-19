@@ -2,29 +2,12 @@ local lsp = require('lsp-zero')
 
 lsp.preset("recommended")
 
-lsp.ensure_installed({
-	'hls',
-	'rust_analyzer',
-	'pylsp',
-	'clangd',
-    'lua_ls',
-    'elmls',
-    'emmet_language_server',
-})
-
--- Fix Undefined global 'vim'
-lsp.nvim_workspace()
-
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
 local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<S-Tab>'] = cmp.mapping.select_prev_item(cmp_select),
   ['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
   ['<CR>'] = cmp.mapping.confirm({ select = true }),
-})
-
-lsp.setup_nvim_cmp({
-  mapping = cmp_mappings
 })
 
 lsp.set_preferences({
@@ -59,35 +42,21 @@ vim.diagnostic.config({
     virtual_text = true
 })
 
-
--- python stuff
-require('lspconfig').pylsp.setup({
-    filetypes = {'python'},
-    settings = {
-        configurationSources = {"flake8"},
-        formatCommand = {"black"},
-        pylsp = {
-            plugins = {
-                jedi_completion = {
-                    include_params = true,
-                },
-                jedi_signature_help = {enabled = true},
-                pyflakes={enabled=true},
-                pylsp_mypy={enabled=false},
-                pycodestyle={
-                enabled=true,
-                ignore={'E501', 'W503', 'E261', 'E262'},
-                maxLineLength=120},
-                yapf={enabled=true}
-            }
-        }
-    }
-})
-
 -- dafny
 require('lspconfig').dafny.setup({
     cmd = { "dafny", "server", "--verification-time-limit", "20" },
     filetypes = { "dfy", "dafny" },
+})
+
+
+require("lspconfig").lua_ls.setup({
+    filetypes = {"lua"}
+})
+
+
+require("lspconfig").hls.setup({
+    cmd = { "haskell-language-server-wrapper" },
+    filetypes = { "haskell", "hs" }
 })
 
 
