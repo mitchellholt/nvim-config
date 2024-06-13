@@ -53,13 +53,8 @@ vim.diagnostic.config({
     virtual_text = true
 })
 
+-- server that does not use mason
 nvim_lsp.hls.setup({})
-
--- require("lspconfig").hls.setup({
---     cmd = { "haskell-language-server-wrapper", "--lsp" },
---     rootPatterns = { "*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml" },
---     filetypes = {"haskell", "lhaskell"}
--- })
 
 require('lspconfig').emmet_language_server.setup({
     filetypes = { "css", "html" },
