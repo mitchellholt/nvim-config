@@ -19,3 +19,5 @@ require("lazy").setup("plugins")
 
 require("colors")
 require("after.lsp")
+-- treesitter don't work rip
+--require("after.treesitter")
