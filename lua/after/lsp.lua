@@ -1,14 +1,25 @@
 local lsp = require('lsp-zero')
 
+local nvim_lsp = require("lspconfig")
+
 lsp.preset("recommended")
 
-local cmp = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
-local cmp_mappings = lsp.defaults.cmp_mappings({
-  ['<S-Tab>'] = cmp.mapping.select_prev_item(cmp_select),
-  ['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
-  ['<CR>'] = cmp.mapping.confirm({ select = true }),
+local cmp = require("cmp")
+cmp.setup({
+    mapping = cmp.mapping.preset.insert({
+        ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+        ['<Tab>'] = cmp.mapping.select_next_item(),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+
+    })
 })
+
+-- local cmp_select = {behavior = cmp.SelectBehavior.Select}
+-- local cmp_mappings = lsp.defaults.cmp_mappings({
+--   ['<S-Tab>'] = cmp.mapping.select_prev_item(cmp_select),
+--   ['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
+--   ['<CR>'] = cmp.mapping.confirm({ select = true }),
+-- })
 
 lsp.set_preferences({
     suggest_lsp_servers = false,
@@ -42,23 +53,13 @@ vim.diagnostic.config({
     virtual_text = true
 })
 
--- dafny
-require('lspconfig').dafny.setup({
-    cmd = { "dafny", "server", "--verification-time-limit", "20" },
-    filetypes = { "dfy", "dafny" },
-})
+nvim_lsp.hls.setup({})
 
-
-require("lspconfig").lua_ls.setup({
-    filetypes = {"lua"}
-})
-
-
-require("lspconfig").hls.setup({
-    cmd = { "haskell-language-server-wrapper" },
-    filetypes = { "haskell", "hs" }
-})
-
+-- require("lspconfig").hls.setup({
+--     cmd = { "haskell-language-server-wrapper", "--lsp" },
+--     rootPatterns = { "*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml" },
+--     filetypes = {"haskell", "lhaskell"}
+-- })
 
 require('lspconfig').emmet_language_server.setup({
     filetypes = { "css", "html" },

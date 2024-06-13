@@ -18,5 +18,4 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 
 require("colors")
-
 require("after.lsp")

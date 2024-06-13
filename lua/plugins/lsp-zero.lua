@@ -16,7 +16,7 @@ return {
         { 'williamboman/mason-lspconfig.nvim', lazy = false },
     },
     config = function()
-        require("after.lsp")
+        -- require("after.lsp")
         require("mason").setup()
         require("mason-lspconfig").setup()
     end

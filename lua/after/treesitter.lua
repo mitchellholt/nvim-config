@@ -1,33 +1,23 @@
-local M = {}
+require("nvim-treesitter.config").setup {
+    highlight = {
+        enable = true,
+        -- languages to disable on
+        disable = { "latex", "matlab" },
 
-M.setup = function()
-    require("nvim-treesitter.configs").setup {
-        highlight = {
-            enable = true,
-            -- languages to disable on
-            disable = { "latex", "matlab" },
+        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+        -- Using this option may slow down your editor, and you may see some duplicate highlights.
+        -- Instead of true it can also be a list of languages
+        additional_vim_regex_highlighting = false,
+    },
 
-            -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-            -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-            -- Using this option may slow down your editor, and you may see some duplicate highlights.
-            -- Instead of true it can also be a list of languages
-            additional_vim_regex_highlighting = false,
-        },
+    ensure_installed = {
+        "html",
+        "css",
+        "javascript",
+        "haskell",
+        "c",
+    },
 
-        ensure_installed = {
-            "html",
-            "css",
-            "javascript",
-            "haskell",
-            "c",
-        },
-
-        sync_install = false,
-        auto_install = true
-
-    }
-end
-
-M.setup()
-
-return M
+    sync_install = false,
+}
