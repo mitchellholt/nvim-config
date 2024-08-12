@@ -64,3 +64,5 @@ nvim_lsp.lua_ls.setup({})
 nvim_lsp.tsserver.setup({})
 
 nvim_lsp.clangd.setup({})
+
+nvim_lsp.texlab.setup({})
