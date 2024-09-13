@@ -9,17 +9,10 @@ cmp.setup({
     mapping = cmp.mapping.preset.insert({
         ['<S-Tab>'] = cmp.mapping.select_prev_item(),
         ['<Tab>'] = cmp.mapping.select_next_item(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<CR>'] = cmp.mapping.confirm(),
 
     })
 })
-
--- local cmp_select = {behavior = cmp.SelectBehavior.Select}
--- local cmp_mappings = lsp.defaults.cmp_mappings({
---   ['<S-Tab>'] = cmp.mapping.select_prev_item(cmp_select),
---   ['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
---   ['<CR>'] = cmp.mapping.confirm({ select = true }),
--- })
 
 lsp.set_preferences({
     suggest_lsp_servers = false,
@@ -61,8 +54,10 @@ nvim_lsp.emmet_language_server.setup({
 
 nvim_lsp.lua_ls.setup({})
 
-nvim_lsp.tsserver.setup({})
+nvim_lsp.ts_ls.setup({})
 
 nvim_lsp.clangd.setup({})
 
 nvim_lsp.texlab.setup({})
+
+nvim_lsp.pylsp.setup({})
