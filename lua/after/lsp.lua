@@ -25,9 +25,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
     vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
     vim.keymap.set('n', '<leader>cf', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-    vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-    vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
-    vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
+    vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.jump({count=-1, float=true})<cr>', opts)
+    vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.jump({count=1, float=true})<cr>', opts)
     vim.keymap.set("n", '<leader>vd', 'vim.diagnostic.open_float()<cr>', opts)
   end,
 })
@@ -85,7 +84,7 @@ nvim_lsp.emmet_language_server.setup({
   filetypes = { "css", "html" },
 })
 
-nvim_lsp.lua_ls.setup({})
+-- nvim_lsp.lua_ls.setup({})
 
 nvim_lsp.ts_ls.setup({})
 

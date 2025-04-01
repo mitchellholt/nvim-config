@@ -26,3 +26,9 @@ require("nvim-treesitter.configs").setup {
 
     sync_install = false,
 }
+
+vim.filetype.add({
+    extension = {
+        mt = 'elm',
+    }
+});
