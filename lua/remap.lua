@@ -6,6 +6,12 @@ vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set("n", "<leader>nh", vim.cmd.nohl)
 
+-- select in line
+vim.cmd([[
+  xnoremap il g_o^
+  onoremap il :<C-u>normal vil<CR>
+]])
+
 
 -- quickfix list delete keymap
 function Remove_qf_item()
