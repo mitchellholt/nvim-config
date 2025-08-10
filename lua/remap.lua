@@ -6,6 +6,13 @@ vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set("n", "<leader>nh", vim.cmd.nohl)
 
+-- Add blank line above/below current line
+vim.cmd([[
+  noremap <C-k> :call append(line('.')-1, '')<CR>
+  noremap <C-j> :call append(line('.'), '')<CR>
+]])
+
+
 -- select in line
 vim.cmd([[
   xnoremap il g_o^

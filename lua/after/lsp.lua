@@ -15,12 +15,23 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(event)
     local opts = { buffer = event.buf }
 
+    references = function()
+      local win = vim.api.nvim_get_current_win()
+      vim.lsp.buf.references(nil, {
+        on_list = function(items, title, context)
+          vim.fn.setqflist({}, ' ', items)
+          vim.cmd.copen()
+          vim.api.nvim_set_current_win(win)
+        end,
+      })
+    end
+
     vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover({border="rounded"})<cr>', opts)
     vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
     vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
     vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
     vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+    vim.keymap.set('n', 'gr', '<cmd>lua references()<cr>', opts)
     vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
     vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
     vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
@@ -31,11 +42,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- local lsp = require('lsp-zero')
-
 local nvim_lsp = require("lspconfig")
-
--- lsp.preset("recommended")
 
 local cmp = require("cmp")
 cmp.setup({
