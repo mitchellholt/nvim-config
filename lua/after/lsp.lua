@@ -20,8 +20,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.buf.references(nil, {
         on_list = function(items, title, context)
           vim.fn.setqflist({}, ' ', items)
-          vim.cmd.copen()
-          vim.api.nvim_set_current_win(win)
+          vim.cmd.cfirst()
         end,
       })
     end
