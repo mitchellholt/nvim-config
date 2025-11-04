@@ -29,6 +29,6 @@ require("nvim-treesitter.configs").setup {
 
 vim.filetype.add({
     extension = {
-        mt = 'elm',
+        mt = 'haskell',
     }
 });
