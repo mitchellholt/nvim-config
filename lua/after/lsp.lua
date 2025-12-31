@@ -1,13 +1,9 @@
 vim.opt.signcolumn = "yes"
 
--- Add cmp_nvim_lsp capabilities settings to lspconfig
--- This should be executed before any lsp configurations
-local lspconfig_defaults = require('lspconfig').util.default_config
-lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-  'force',
-  lspconfig_defaults.capabilities,
-  require('cmp_nvim_lsp').default_capabilities()
-)
+-- NOTE: this must be executed before any lsp configurations
+vim.lsp.config( '*', {
+  capabilities = require('cmp_nvim_lsp').default_capabilities()
+})
 
 -- Features that only work when an Lsp is attached
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -16,7 +12,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local opts = { buffer = event.buf }
 
     references = function()
-      local win = vim.api.nvim_get_current_win()
       vim.lsp.buf.references(nil, {
         on_list = function(items, title, context)
           vim.fn.setqflist({}, ' ', items)
@@ -41,8 +36,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-local nvim_lsp = require("lspconfig")
-
 local cmp = require("cmp")
 cmp.setup({
   sources = {
@@ -55,18 +48,6 @@ cmp.setup({
 
   })
 })
-
--- lsp.set_preferences({
---   suggest_lsp_servers = false,
---   sign_icons = {
---     error = 'E',
---     warn = 'W',
---     hint = 'H',
---     info = 'I'
---   }
--- })
-
--- lsp.setup()
 
 vim.diagnostic.config({
   signs = {
@@ -85,20 +66,16 @@ vim.diagnostic.config({
   float = { border="rounded" }
 })
 
-nvim_lsp.hls.setup({})
-
-nvim_lsp.emmet_language_server.setup({
-  filetypes = { "css", "html" },
+vim.lsp.config("emmet_language_server", {
+  filetypes = { "css", "html" }
 })
 
--- nvim_lsp.lua_ls.setup({})
-
-nvim_lsp.ts_ls.setup({})
-
-nvim_lsp.clangd.setup({})
-
-nvim_lsp.texlab.setup({})
-
-nvim_lsp.pylsp.setup({})
-
-nvim_lsp.elmls.setup({})
+vim.lsp.enable({
+  "hls",
+  "emmet_language_server",
+  "ts_ls",
+  "clangd",
+  "texlab",
+  "pylsp",
+  "elmls"
+})
