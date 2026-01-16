@@ -8,8 +8,8 @@ vim.keymap.set("n", "<leader>nh", vim.cmd.nohl)
 
 -- Add blank line above/below current line
 vim.cmd([[
-  noremap <C-k> :call append(line('.')-1, '')<CR>
-  noremap <C-j> :call append(line('.'), '')<CR>
+  noremap <silent> <C-k> :call append(line('.')-1, '')<CR>
+  noremap <silent> <C-j> :call append(line('.'), '')<CR>
 ]])
 
 -- Previous and next file in quickfix
