@@ -24,3 +24,8 @@ vim.cmd([[
   xnoremap il g_o^
   onoremap il :<C-u>normal vil<CR>
 ]])
+
+-- Format line from insert mode
+vim.cmd([[
+  inoremap <silent> <C-g>q <ESC>gwgwa
+]])
