@@ -29,3 +29,9 @@ vim.cmd([[
 vim.cmd([[
   inoremap <silent> <C-g>q <ESC>gwgwa
 ]])
+
+-- Remap the awful insert command map from vimtex
+vim.cmd([[
+  nmap gs <Plug>(vimtex-cmd-create)
+  xmap gs <Plug>(vimtex-cmd-create)
+]])
