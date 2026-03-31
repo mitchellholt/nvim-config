@@ -31,7 +31,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<leader>cf', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
     vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.jump({count=-1, float=true})<cr>', opts)
     vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.jump({count=1, float=true})<cr>', opts)
-    vim.keymap.set("n", '<leader>vd', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
+    vim.keymap.set('n', '<leader>vd', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
+    vim.keymap.set('n', '<leader>f', '<cmd>lua require("telescope.builtin").lsp_document_symbols({ symbols="function" })<cr>', opts)
   end,
 })
 
@@ -78,3 +79,5 @@ vim.lsp.enable({
   "pylsp",
   "elmls"
 })
+
+vim.lsp.config("ts_ls", { filetypes = { "typescript", "javascript" } })
