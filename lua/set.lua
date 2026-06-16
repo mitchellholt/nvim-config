@@ -30,3 +30,5 @@ vim.opt.colorcolumn = "81"
 vim.opt.mouse = ""
 
 vim.opt.guicursor = "n-v-c-sm:block"
+
+vim.g.vimtex_syntax_nospell_comments = 1

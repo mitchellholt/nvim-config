@@ -1,6 +1,7 @@
 require("set")
 require("remap")
 require("macros")
+require("filetype")
 
 -- boostrap lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
