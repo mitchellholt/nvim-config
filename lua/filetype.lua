@@ -1,7 +1,5 @@
--- Create an augroup for spellcheck to keep the config organized
-local spell_group = vim.api.nvim_create_augroup("TexSpellcheck", { clear = true })
-
 -- Enable spell check specifically for tex files
+local spell_group = vim.api.nvim_create_augroup("TexSpellcheck", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
   group = spell_group,
   pattern = "tex",
@@ -11,3 +9,8 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Set comment string for maple
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "maple",
+  callback = function() vim.bo.commentstring = "# %s" end,
+})
