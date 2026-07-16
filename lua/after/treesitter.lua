@@ -7,7 +7,7 @@ local languages = {
   "elm",
 }
 
-require("nvim-treesitter").install(lanugaes)
+require("nvim-treesitter").install(languages)
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = languages,
