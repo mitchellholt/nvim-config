@@ -8,5 +8,6 @@ return {
                 "--shell-escape"
             }
         }
+        vim.g.vimtex_view_method = 'galley'
     end
 }
