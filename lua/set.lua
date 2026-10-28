@@ -37,4 +37,11 @@ vim.keymap.set("i", "<down>", "<nop>", { noremap = true })
 
 vim.opt.guicursor = "n-v-c-sm:block"
 
+-- vimtex stuff
 vim.g.vimtex_syntax_nospell_comments = 1
+vim.g.vimtex_fold_enabled = 1
+vim.g.vimtex_fold_types = {
+  sections = { parse_levels = 0 },
+  items = { enabled = 0 },
+  envs = { enabled = 0 }
+}

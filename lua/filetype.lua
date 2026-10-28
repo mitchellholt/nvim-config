@@ -1,11 +1,15 @@
 -- Enable spell check specifically for tex files
-local spell_group = vim.api.nvim_create_augroup("TexSpellcheck", { clear = true })
+local tex_group = vim.api.nvim_create_augroup("LaTeX", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-  group = spell_group,
+  group = tex_group,
   pattern = "tex",
   callback = function()
     vim.opt_local.spell = true
     vim.opt_local.spelllang = "en_ca"
+    vim.opt_local.foldenable = true
+    vim.opt_local.foldmethod = "expr"
+    vim.opt_local.foldexpr = "vimtex#fold#level(v:lnum)"
+    vim.opt_local.foldlevel = 0
   end,
 })
 
