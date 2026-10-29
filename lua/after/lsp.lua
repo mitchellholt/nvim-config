@@ -50,8 +50,17 @@ cmp.setup({
   })
 })
 
+cmp.setup.filetype("maple", {
+  sources = {
+    { name = "buffer", keyword_length = 3 }
+  }
+})
+
 cmp.setup.filetype("Macaulay2", {
-  sources = { { name = "dictionary", keyword_length = 2 } }
+  sources = {
+    { name = "dictionary", keyword_length = 2 },
+    { name = "buffer",     keyword_length = 3 }
+  }
 })
 
 vim.diagnostic.config({
