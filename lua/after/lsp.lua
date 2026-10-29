@@ -1,7 +1,7 @@
 vim.opt.signcolumn = "yes"
 
 -- NOTE: this must be executed before any lsp configurations
-vim.lsp.config( '*', {
+vim.lsp.config('*', {
   capabilities = require('cmp_nvim_lsp').default_capabilities()
 })
 
@@ -32,7 +32,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.jump({count=-1, float=true})<cr>', opts)
     vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.jump({count=1, float=true})<cr>', opts)
     vim.keymap.set('n', '<leader>vd', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
-    vim.keymap.set('n', '<leader>f', '<cmd>lua require("telescope.builtin").lsp_document_symbols({ symbols="function" })<cr>', opts)
+    vim.keymap.set('n', '<leader>f',
+      '<cmd>lua require("telescope.builtin").lsp_document_symbols({ symbols="function" })<cr>', opts)
   end,
 })
 
@@ -49,6 +50,10 @@ cmp.setup({
   })
 })
 
+cmp.setup.filetype("Macaulay2", {
+  sources = { { name = "dictionary", keyword_length = 2 } }
+})
+
 vim.diagnostic.config({
   signs = {
     text = {
@@ -63,7 +68,7 @@ vim.diagnostic.config({
 
 vim.diagnostic.config({
   virtual_text = true,
-  float = { border="rounded" }
+  float = { border = "rounded" }
 })
 
 vim.lsp.config("emmet_language_server", {

@@ -18,3 +18,6 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "maple",
   callback = function() vim.bo.commentstring = "# %s" end,
 })
+
+-- Macaulay2
+vim.filetype.add({ extension = { m2 = "Macaulay2" } })
